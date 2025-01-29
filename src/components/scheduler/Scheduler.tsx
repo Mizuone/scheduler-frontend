@@ -1,4 +1,4 @@
-import { Box, Container, Flex } from "@radix-ui/themes";
+import { Box, Flex } from "@radix-ui/themes";
 
 import { Day } from "./day/Day"
 import { DayHeader } from "./day/DayHeader"
@@ -15,8 +15,15 @@ export const Scheduler = () => {
                     <Box p={"5"}></Box>
                     <Flex width={"100%"}>
                         {
-                            currentWeekDates.map((day, index) => {
-                                return <DayHeader key={`${day.dayOfWeek} - ${index}`} day={day.dayOfWeek} dayOfMonth={day.dayOfMonth} currentDay={day.isCurrentDay} />;
+                            currentWeekDates.map((day) => {
+                                const keyId = `day-header-${day.dayOfWeek}`;
+
+                                return <DayHeader
+                                    key={keyId}
+                                    day={day.dayOfWeek}
+                                    dayOfMonth={day.dayOfMonth}
+                                    currentDay={day.isCurrentDay}
+                                />;
                             })
                         }
                     </Flex>
@@ -28,7 +35,9 @@ export const Scheduler = () => {
                     <Flex width={"100%"}>
                         {
                             currentWeekDates.map((day) => {
-                                return <Day key={`${day.dayOfWeek}-${day.dayOfMonth}`} day={day} />
+                                const keyId = `${day.dayOfWeek}-${day.dayOfMonth}`;
+
+                                return <Day key={keyId} day={day} />
                             })
                         }
                     </Flex>

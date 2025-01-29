@@ -1,6 +1,5 @@
 import { Flex, Theme } from '@radix-ui/themes'
 
-import { Header } from './components/header/Header'
 import { Scheduler } from './components/scheduler/Scheduler'
 
 function App() {
