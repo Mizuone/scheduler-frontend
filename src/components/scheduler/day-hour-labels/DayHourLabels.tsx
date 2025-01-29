@@ -1,5 +1,6 @@
 import { Box, Text } from "@radix-ui/themes";
 
+import { DayHourTestId } from "../../../tests/data-test-ids";
 import { normalDayHours } from "../../../helpers/dayHours";
 
 export const DayHourLabels = () => {
@@ -8,6 +9,7 @@ export const DayHourLabels = () => {
             {
                 normalDayHours.map((dayHour, index) => {
                     const lastElement = index === normalDayHours.length - 1;
+                    const testId = `${DayHourTestId}-${dayHour.label}`;
 
                     const boxStyles: React.CSSProperties | undefined =  lastElement ? {} : { 
                         height: "3rem",
@@ -17,8 +19,14 @@ export const DayHourLabels = () => {
                     }
 
                     return (
-                        <Box style={{...boxStyles}} position={"relative"} px={"2"} width={"4rem"}>
-                            <Text style={{ color: "var(--white-a11)", top: "-0.6rem", position: "absolute" }} align={"right"} as="span" size={"2"}>
+                        <Box
+                            key={dayHour.label}
+                            data-testid={testId}
+                            style={{...boxStyles}} position={"relative"} px={"2"} width={"4rem"}
+                        >
+                            <Text
+                                style={{ color: "var(--white-a11)", top: "-0.6rem", position: "absolute" }} align={"right"} as="span" size={"2"}
+                            >
                                 {dayHour.label}
                             </Text>
                         </Box>
